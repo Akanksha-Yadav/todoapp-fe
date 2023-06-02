@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 function ToDoList(props) {
 
@@ -14,15 +13,15 @@ function ToDoList(props) {
     }
 
     return (
-        <div>
-            {props.toDoList?.length > 0 ? (<ul className="todo-list">
+        <div class="todo">
+            {props.toDoList?.length > 0 ? (<ul class="todo-list">
                 {props.toDoList.map(
-                    todo => <li key={todo[0]}>{todo[1]}
-                   
-                    <button classname="delete-button" onClick={() => {deleteItem(todo[0], props.toDoList, props.setToDoList)}}>Delete</button>
+                    
+                    todo =><li key={todo[0]}>{todo[1]}{' '}
+                    <button class="delete-button" onClick={() => {deleteItem(todo[0], props.toDoList, props.setToDoList)}}>Delete</button>
                     </li>
                 )}
-            </ul>): (<div>No tasks</div>)}
+            </ul>): (<div class="empty">No tasks</div>)}
         </div>
     )
 };

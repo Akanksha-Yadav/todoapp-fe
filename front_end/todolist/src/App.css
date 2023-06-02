@@ -17,7 +17,9 @@ body {
   padding: 1rem;
   max-width: 50%;
   margin: 0 auto;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #333;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 5px;
 }
@@ -33,6 +35,9 @@ h1 {
 
 .input-wrapper {
   margin: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   
 }
 
@@ -43,7 +48,7 @@ h1 {
 .todo {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  
 }
 
 input {
@@ -74,13 +79,17 @@ button {
   border: 1px solid #828691;
 }
 
+button{
+  background: grey;
+}
 .add-button {
-  color: #44c0b6;
+  color: #54bdb4;
   border-left: none;
 }
 
 .delete-button {
   color: #fe6a6a;
+  margin-left: 240px;
 }
 
 ul {
