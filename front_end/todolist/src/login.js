@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
+import { Outlet, Link } from "react-router-dom";
 import "./login.css";
 import App from "./App";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   // React States
+  const navigate = useNavigate();
+
   const [errorUname, setErrorUname] = useState("");
   const [errorPass, setErrorPass] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -24,7 +28,9 @@ function Login() {
   ];
 
   const handleSubmit = (event) => {
+
     //Prevent page reload
+    var isLoggedIn = false;
     setErrorPass("");
     setErrorUname("");
     event.preventDefault();
@@ -32,6 +38,7 @@ function Login() {
      {
         if(pass===database[0].password)
         {
+          isLoggedIn = true;
           setIsSubmitted(true);
         }
         else
@@ -43,6 +50,7 @@ function Login() {
      {
         if(pass===database[1].password)
         {
+          isLoggedIn = true;
           setIsSubmitted(true);
         }
         else
@@ -53,6 +61,10 @@ function Login() {
      else
      {
             setErrorUname("invalid username")
+     }
+    
+     if (isLoggedIn) {
+      navigate("/app")
      }
   };
 
@@ -76,14 +88,12 @@ function Login() {
         </div>
         <div className="button-container">
           <input type="submit" />
+          <button >sign up</button>
         </div>
       </form>
     </div>
   );
-          
-  if (isSubmitted) {
-    return <App></App>
-  } else {
+  
     return (
         <div className="app">
           <div className="login-form">
@@ -92,7 +102,7 @@ function Login() {
           </div>
         </div>
     );
-  }
+
 }
 
 export default Login;
