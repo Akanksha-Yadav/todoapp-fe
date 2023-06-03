@@ -17,7 +17,7 @@ function ToDoList(props) {
             {props.toDoList?.length > 0 ? (<ul class="todo-list">
                 {props.toDoList.map(
                     
-                    todo =><li key={todo[0]}>{todo[1]}{' '}
+                    todo =><li key={todo[0]}>{todo[1]}
                     <button class="delete-button" onClick={() => {deleteItem(todo[0], props.toDoList, props.setToDoList)}}>Delete</button>
                     </li>
                 )}
