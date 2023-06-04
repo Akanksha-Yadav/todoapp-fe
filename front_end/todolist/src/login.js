@@ -5,6 +5,7 @@ import { Outlet, Link } from "react-router-dom";
 import "./login.css";
 import App from "./App";
 import { useNavigate } from "react-router-dom";
+import { verifyLogin } from "./service";
 
 function Login() {
   // React States
@@ -12,60 +13,24 @@ function Login() {
 
   const [errorUname, setErrorUname] = useState("");
   const [errorPass, setErrorPass] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [name, setname]=useState("")
   const [pass, setpass]=useState("")
   // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
+
 
   const handleSubmit = (event) => {
+    event.preventDefault();
 
     //Prevent page reload
     var isLoggedIn = false;
     setErrorPass("");
     setErrorUname("");
-    event.preventDefault();
-     if(name===database[0].username)
-     {
-        if(pass===database[0].password)
-        {
-          isLoggedIn = true;
-          setIsSubmitted(true);
-        }
-        else
-        {
-             setErrorPass("invalid password")
-        }
-     }
-     else if(name===database[1].username)
-     {
-        if(pass===database[1].password)
-        {
-          isLoggedIn = true;
-          setIsSubmitted(true);
-        }
-        else
-        {
-             setErrorPass("invalid password")
-        }
-     }
-     else
-     {
-            setErrorUname("invalid username")
-     }
     
-     if (isLoggedIn) {
-      navigate("/app")
-     }
+    verifyLogin(name, pass).then(response => {
+        if (response) {
+          navigate("/app")
+        }
+    })
   };
 
   const renderForm = (
