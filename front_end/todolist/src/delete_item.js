@@ -1,17 +1,12 @@
-
-export async function verifyLogin(userName, password) {
+export async function deleteItem(item_id) {
     try{
-        const response = await fetch('http://localhost:8000/login/', {
-            method: 'POST',
+        const response = await fetch('http://localhost:8000/items/'+ item_id +"/", {
+            method: 'DELETE',
             headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(
-                {
-                    "userName": userName,
-                     "password": password
-                })
+           
           });
 
         if (response.ok) {

@@ -10,6 +10,9 @@ function Navigation() {
             <Link to="/login"  class="link">Login</Link>
           </li>
           <li>
+            <Link to="/signup"  class="link" >Sign Up</Link>
+          </li>
+          <li>
             <Link to="/app"  class="link" >To do app</Link>
           </li>
         </ul>

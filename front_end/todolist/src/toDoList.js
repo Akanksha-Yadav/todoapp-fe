@@ -1,27 +1,52 @@
+import { useState, useEffect } from "react";
+import { readItem } from "./readitems";
+import { deleteItem } from "./delete_item";
+
 
 function ToDoList(props) {
 
-    function deleteItem(key, toDoList, setToDoList) {
+    useEffect(() => {
+        readItem().then(response => {
+            if (response) {
+                var defaultToDoList = []
+                for (var i = 0; i < response.length; i++) {
+                    defaultToDoList.push([response[i].id, response[i].title]);
+                }
+                props.setToDoList(defaultToDoList);
+                // toDoList.push([id, todo]);
+
+                // setId(id + 1)
+                // setTodo("")
+            }
+        })
+    }, []);
+
+    function removeItem(key, toDoList, setToDoList) {
         var newtoDoList = []
-        for (var i = 0; i<toDoList.length;i++) {
+        for (var i = 0; i < toDoList.length; i++) {
             if (toDoList[i][0] != key) {
                 newtoDoList.push(toDoList[i])
             }
         }
-
-        setToDoList(newtoDoList)
+        deleteItem(key).then(deleted => {
+            if (deleted) {
+                setToDoList(newtoDoList)
+                
+            }
+        })
+        
     }
 
     return (
         <div class="todo">
             {props.toDoList?.length > 0 ? (<ul class="todo-list">
                 {props.toDoList.map(
-                    
-                    todo =><li key={todo[0]}>{todo[1]}
-                    <button class="delete-button" onClick={() => {deleteItem(todo[0], props.toDoList, props.setToDoList)}}>Delete</button>
+
+                    todo => <li key={todo[0]}>{todo[1]}
+                        <button class="delete-button" onClick={() => { removeItem(todo[0], props.toDoList, props.setToDoList) }}>Delete</button>
                     </li>
                 )}
-            </ul>): (<div class="empty">No tasks</div>)}
+            </ul>) : (<div class="empty">No tasks</div>)}
         </div>
     )
 };

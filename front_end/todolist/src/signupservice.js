@@ -1,7 +1,7 @@
 
-export async function verifyLogin(userName, password) {
+export async function signUpUser(userName, password) {
     try{
-        const response = await fetch('http://localhost:8000/login/', {
+        const response = await fetch('http://localhost:8000/signup/', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',

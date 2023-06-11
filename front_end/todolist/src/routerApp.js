@@ -5,6 +5,7 @@ import ToDoInput from './toDoInput';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './login';
 import App from './App';
+import SignUP from './signup'
 import Navigation from './navigation';
 
 function RouterApp() {
@@ -28,6 +29,7 @@ function RouterApp() {
             <Route path="/" element={<Navigation></Navigation>} />
             <Route index element={<Navigation></Navigation>} />
             <Route path="login" element={<Login/>}/>
+            <Route path="signup" element={<SignUP/>}/>
             <Route path="app" element={<App />} />
         </Routes>
       </BrowserRouter>

@@ -1,7 +1,8 @@
+import { getUserId } from "./getcookie";
 
-export async function verifyLogin(userName, password) {
+export async function createItem(title) {
     try{
-        const response = await fetch('http://localhost:8000/login/', {
+        const response = await fetch('http://localhost:8000/'+ getUserId() +'/items/', {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
@@ -9,8 +10,7 @@ export async function verifyLogin(userName, password) {
             },
             body: JSON.stringify(
                 {
-                    "userName": userName,
-                     "password": password
+                    "title": title,
                 })
           });
 

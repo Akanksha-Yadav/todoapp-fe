@@ -26,12 +26,22 @@ function Login() {
     setErrorPass("");
     setErrorUname("");
     
-    verifyLogin(name, pass).then(response => {
-        if (response) {
+    verifyLogin(name, pass).then(user => {
+        if (user) {
+          document.cookie=user.user_id;
           navigate("/app")
         }
+        else {
+          setErrorPass("Invalid Credentials")
+        }
+
     })
   };
+
+  const redirect = async (event) => {
+    event.preventDefault();
+    {navigate("/signup")}
+  }
 
   const renderForm = (
     <div className="form">
@@ -40,7 +50,7 @@ function Login() {
           <label>Username </label>
           <input type="text" name="uname" value={name} 
           onChange={(e) => {
-            setname(e.target.value);}} required />
+            setname(e.target.value);}}  required/>
             {errorUname}
         </div>
         <div className="input-container">
@@ -48,12 +58,12 @@ function Login() {
           <input type="password" name="pass" value={pass}
           onChange={(e) => {
           setpass(e.target.value);}}
-          required />
+           required/>
           {errorPass}
         </div>
         <div className="button-container">
           <input type="submit" />
-          <button >sign up</button>
+          <button onClick={redirect}>sign up</button>
         </div>
       </form>
     </div>
