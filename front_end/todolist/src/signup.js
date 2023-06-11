@@ -5,7 +5,7 @@ import { Outlet, Link } from "react-router-dom";
 import "./login.css";
 import App from "./App";
 import { useNavigate } from "react-router-dom";
-import { signUpUser } from "./signupservice";
+import { signUpUser } from "./service_components/signupservice";
 
 function SignUP() {
 

@@ -5,7 +5,8 @@ import { Outlet, Link } from "react-router-dom";
 import "./login.css";
 import App from "./App";
 import { useNavigate } from "react-router-dom";
-import { verifyLogin } from "./service";
+import { verifyLogin } from "./service_components/service";
+import { getToken } from "./service_components/get_token";
 
 function Login() {
   // React States
@@ -16,6 +17,8 @@ function Login() {
   const [name, setname]=useState("")
   const [pass, setpass]=useState("")
   // User Login info
+
+  
 
 
   const handleSubmit = (event) => {
@@ -28,7 +31,8 @@ function Login() {
     
     verifyLogin(name, pass).then(user => {
         if (user) {
-          document.cookie=user.user_id;
+          document.cookie=user.user_id+":"+user.token;
+           
           navigate("/app")
         }
         else {

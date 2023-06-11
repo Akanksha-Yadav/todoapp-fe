@@ -1,4 +1,5 @@
-import { getUserId } from "./getcookie";
+import { getToken } from "./get_token";
+import { getUserId } from "./get_userId";
 
 export async function readItem() {
     try{
@@ -6,7 +7,8 @@ export async function readItem() {
             method: 'GET',
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+               'token': getToken()
             }
            
         });

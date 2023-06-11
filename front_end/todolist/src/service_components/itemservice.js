@@ -1,4 +1,5 @@
-import { getUserId } from "./getcookie";
+import { getToken } from "./get_token";
+import { getUserId } from "./get_userId";
 
 export async function createItem(title) {
     try{
@@ -6,7 +7,8 @@ export async function createItem(title) {
             method: 'POST',
             headers: {
               'Accept': 'application/json',
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'token': getToken()
             },
             body: JSON.stringify(
                 {

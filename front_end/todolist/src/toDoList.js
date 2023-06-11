@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { readItem } from "./readitems";
-import { deleteItem } from "./delete_item";
+import { readItem } from "./service_components/readitems";
+import { deleteItem } from "./service_components/delete_item";
 
 
 function ToDoList(props) {
